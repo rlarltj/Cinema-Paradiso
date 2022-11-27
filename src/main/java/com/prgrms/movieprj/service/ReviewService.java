@@ -36,6 +36,7 @@ public interface ReviewService {
                                 .price(review.getMovie().getPrice())
                                 .running(review.getMovie().getRunning())
                                 .timeTable(review.getMovie().getTimeTable()).build())
+                .score(review.getScore())
                 .build();
     }
 }

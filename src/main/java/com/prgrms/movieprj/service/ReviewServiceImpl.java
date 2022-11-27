@@ -26,6 +26,7 @@ public class ReviewServiceImpl implements ReviewService {
                 .reviewText(reviewForm.getReviewText())
                 .customer(Customer.builder().id(reviewForm.getCustomerId()).build())
                 .movie(Movie.builder().id(reviewForm.getMovieId()).build())
+                .score(reviewForm.getScore())
                 .build();
 
         Review saveOne = reviewRepository.save(review);
