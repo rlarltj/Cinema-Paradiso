@@ -1,7 +1,5 @@
 package com.prgrms.movieprj.controller;
 
-import com.prgrms.movieprj.domain.Customer;
-import com.prgrms.movieprj.domain.Review;
 import com.prgrms.movieprj.dto.ReviewDto;
 import com.prgrms.movieprj.dto.ReviewForm;
 import com.prgrms.movieprj.service.ReviewService;

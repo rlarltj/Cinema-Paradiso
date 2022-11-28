@@ -1,6 +1,5 @@
 package com.prgrms.movieprj.dto;
 
-import com.prgrms.movieprj.domain.Reservation;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -32,10 +32,7 @@ public interface ReviewService {
                         MovieDto.builder()
                                 .id(review.getMovie().getId())
                                 .name(review.getMovie().getName())
-                                .director(review.getMovie().getDirector())
-                                .price(review.getMovie().getPrice())
-                                .running(review.getMovie().getRunning())
-                                .timeTable(review.getMovie().getTimeTable()).build())
+                                .build())
                 .score(review.getScore())
                 .build();
     }
