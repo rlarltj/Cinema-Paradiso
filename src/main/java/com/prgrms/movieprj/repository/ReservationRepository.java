@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
-    @Query("select r from Reservation r join Customer c on r.customer = c where c.email = :email")
+    @Query("select r from Reservation r join fetch r.customer c join fetch r.movie m where c.email = :email")
     List<Reservation> findByEmail(String email);
 }
