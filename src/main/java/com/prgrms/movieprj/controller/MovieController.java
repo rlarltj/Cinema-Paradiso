@@ -28,6 +28,7 @@ public class MovieController {
 
         return new ResponseEntity<>(reviews, HttpStatus.OK);
     }
+
     @GetMapping
     public ResponseEntity<List<MovieDto>> findAll() {
         List<MovieDto> movieDtoList = movieService.findAll();

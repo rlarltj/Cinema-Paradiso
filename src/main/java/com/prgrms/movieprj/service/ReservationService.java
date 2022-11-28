@@ -39,6 +39,8 @@ public interface ReservationService {
                                 .timeTable(movie.getTimeTable())
                                 .build()
                 )
+                .price(reservation.getPrice())
+                .quantity(reservation.getQuantity())
                 .build();
     }
 }

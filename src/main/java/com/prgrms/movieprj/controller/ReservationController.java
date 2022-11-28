@@ -29,8 +29,8 @@ public class ReservationController {
         return new ResponseEntity<>(reservationDto, HttpStatus.OK);
     }
 
-    @GetMapping("/{email}")
-    public ResponseEntity<List<ReservationDto>> showCustomerReservation(@PathVariable String email) {
+    @GetMapping
+    public ResponseEntity<List<ReservationDto>> showCustomerReservation(@RequestParam String email) {
         List<ReservationDto> reservationDtoList = reservationService.findByEmail(email);
 
         return new ResponseEntity<>(reservationDtoList, HttpStatus.OK);

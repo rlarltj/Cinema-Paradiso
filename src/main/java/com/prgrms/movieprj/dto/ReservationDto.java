@@ -9,4 +9,7 @@ public class ReservationDto {
     private int id;
     private CustomerDto customer;
     private MovieDto movie;
+
+    private int price;
+    private int quantity;
 }

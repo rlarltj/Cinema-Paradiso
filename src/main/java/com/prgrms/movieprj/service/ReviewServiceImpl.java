@@ -5,12 +5,14 @@ import com.prgrms.movieprj.domain.Movie;
 import com.prgrms.movieprj.domain.Review;
 import com.prgrms.movieprj.dto.ReviewDto;
 import com.prgrms.movieprj.dto.ReviewForm;
+import com.prgrms.movieprj.repository.CustomerRepository;
 import com.prgrms.movieprj.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -18,13 +20,17 @@ import java.util.stream.Collectors;
 @Service
 public class ReviewServiceImpl implements ReviewService {
     private final ReviewRepository reviewRepository;
+    private final CustomerRepository customerRepository;
 
     @Transactional
     @Override
     public ReviewDto register(ReviewForm reviewForm) {
+        Optional<Customer> findByEmail = customerRepository.findByEmail(reviewForm.getEmail());
+        Customer customer = findByEmail.orElseThrow(() -> new RuntimeException("미가입 회원입니다."));
+
         Review review = Review.builder()
                 .reviewText(reviewForm.getReviewText())
-                .customer(Customer.builder().id(reviewForm.getCustomerId()).build())
+                .customer(Customer.builder().id(customer.getId()).build())
                 .movie(Movie.builder().id(reviewForm.getMovieId()).build())
                 .score(reviewForm.getScore())
                 .build();
