@@ -3,48 +3,41 @@ package com.prgrms.movieprj.service;
 import com.prgrms.movieprj.domain.Customer;
 import com.prgrms.movieprj.domain.Movie;
 import com.prgrms.movieprj.domain.Reservation;
-import com.prgrms.movieprj.dto.ReservationDto;
-import com.prgrms.movieprj.dto.ReservationForm;
+import com.prgrms.movieprj.dto.request.ReservationForm;
+import com.prgrms.movieprj.dto.response.ReservationDto;
 import com.prgrms.movieprj.repository.CustomerRepository;
-import com.prgrms.movieprj.repository.MovieRepository;
 import com.prgrms.movieprj.repository.ReservationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
+@Transactional
 public class ReservationServiceImpl implements ReservationService {
     private final ReservationRepository reservationRepository;
     private final CustomerRepository customerRepository;
-    private final MovieRepository movieRepository;
 
     @Override
     public ReservationDto reserve(ReservationForm reservationForm) {
 
-        Optional<Customer> findCustomer = customerRepository.findByEmail(reservationForm.getEmail());
-        Optional<Movie> findMovie = movieRepository.findById(reservationForm.getMovieId());
+        Customer customer = customerRepository.findByEmail(reservationForm.getEmail())
+                .orElseGet(() -> getCustomer(reservationForm));
 
-        if (findCustomer.isPresent()) {
-            Customer customer = findCustomer.get();
-            Reservation reservation = new Reservation(customer, findMovie.get(), reservationForm.getQuantity(), reservationForm.getPrice());
-            Reservation save = reservationRepository.save(reservation);
+        Customer savedOne = customerRepository.save(customer);
 
-            return entityToDto(save);
-        }
+        Reservation reservation = getReservation(reservationForm, savedOne);
 
-        Customer newCustomer = Customer.builder()
-                .name(reservationForm.getName())
-                .email(reservationForm.getEmail())
-                .phoneNumber(reservationForm.getPhoneNumber())
-                .build();
+        Reservation save = reservationRepository.save(reservation);
+        return entityToDto(save);
 
-        Customer savedOne = customerRepository.save(newCustomer);
+    }
 
-        Reservation reservation = Reservation.builder()
+    private Reservation getReservation(ReservationForm reservationForm, Customer savedOne) {
+        return Reservation.builder()
                 .movie(Movie.builder()
                         .id(reservationForm.getMovieId())
                         .build())
@@ -54,13 +47,17 @@ public class ReservationServiceImpl implements ReservationService {
                         .name(reservationForm.getName())
                         .phoneNumber(reservationForm.getPhoneNumber())
                         .build())
-                .price(reservationForm.getPrice() * reservationForm.getQuantity())
+                .price(reservationForm.getPrice())
                 .quantity(reservationForm.getQuantity())
                 .build();
+    }
 
-        Reservation save = reservationRepository.save(reservation);
-
-        return entityToDto(save);
+    private Customer getCustomer(ReservationForm reservationForm) {
+        return Customer.builder()
+                .name(reservationForm.getName())
+                .email(reservationForm.getEmail())
+                .phoneNumber(reservationForm.getPhoneNumber())
+                .build();
     }
 
     @Override
@@ -75,6 +72,7 @@ public class ReservationServiceImpl implements ReservationService {
                 .map(reservation -> entityToDto(reservation))
                 .collect(Collectors.toList());
     }
+
 
     @Override
     public void cancel(int reservationId) {

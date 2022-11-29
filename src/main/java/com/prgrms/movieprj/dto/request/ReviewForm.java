@@ -1,4 +1,4 @@
-package com.prgrms.movieprj.dto;
+package com.prgrms.movieprj.dto.request;
 
 import lombok.Data;
 
@@ -15,8 +15,8 @@ public class ReviewForm {
     @NotBlank
     private String name;
 
-    private int movieId;
-
     @NotBlank
     private int score;
+
+    private int movieId;
 }

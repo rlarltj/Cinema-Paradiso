@@ -1,7 +1,7 @@
 package com.prgrms.movieprj.controller;
 
-import com.prgrms.movieprj.dto.MovieDto;
-import com.prgrms.movieprj.dto.ReviewDto;
+import com.prgrms.movieprj.dto.response.MovieDto;
+import com.prgrms.movieprj.dto.response.ReviewDto;
 import com.prgrms.movieprj.service.MovieService;
 import com.prgrms.movieprj.service.ReviewService;
 import lombok.RequiredArgsConstructor;

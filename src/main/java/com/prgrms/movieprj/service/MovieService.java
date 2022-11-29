@@ -1,7 +1,7 @@
 package com.prgrms.movieprj.service;
 
 import com.prgrms.movieprj.domain.Movie;
-import com.prgrms.movieprj.dto.MovieDto;
+import com.prgrms.movieprj.dto.response.MovieDto;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.prgrms.movieprj.service;
 
 import com.prgrms.movieprj.domain.Movie;
-import com.prgrms.movieprj.dto.MovieDto;
+import com.prgrms.movieprj.dto.response.MovieDto;
 import com.prgrms.movieprj.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,10 +1,10 @@
 package com.prgrms.movieprj.service;
 
 import com.prgrms.movieprj.domain.Review;
-import com.prgrms.movieprj.dto.CustomerDto;
-import com.prgrms.movieprj.dto.MovieDto;
-import com.prgrms.movieprj.dto.ReviewDto;
-import com.prgrms.movieprj.dto.ReviewForm;
+import com.prgrms.movieprj.dto.request.ReviewForm;
+import com.prgrms.movieprj.dto.response.CustomerDto;
+import com.prgrms.movieprj.dto.response.MovieDto;
+import com.prgrms.movieprj.dto.response.ReviewDto;
 
 import java.util.List;
 

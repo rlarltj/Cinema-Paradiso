@@ -1,8 +1,8 @@
 package com.prgrms.movieprj.controller;
 
 import com.prgrms.movieprj.domain.Customer;
-import com.prgrms.movieprj.dto.CustomerRegisterForm;
-import com.prgrms.movieprj.dto.ReviewDto;
+import com.prgrms.movieprj.dto.request.CustomerRegisterForm;
+import com.prgrms.movieprj.dto.response.ReviewDto;
 import com.prgrms.movieprj.service.CustomerService;
 import com.prgrms.movieprj.service.ReviewService;
 import lombok.RequiredArgsConstructor;

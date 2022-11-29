@@ -23,11 +23,11 @@ public class Review extends BaseEntity {
     @Lob
     private String reviewText;
 
-    @ManyToOne(fetch = LAZY, cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "movie_id")
     private Movie movie;
 
-    @ManyToOne(fetch = LAZY, cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 

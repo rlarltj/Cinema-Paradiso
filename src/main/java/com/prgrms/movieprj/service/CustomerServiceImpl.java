@@ -1,7 +1,7 @@
 package com.prgrms.movieprj.service;
 
 import com.prgrms.movieprj.domain.Customer;
-import com.prgrms.movieprj.dto.CustomerRegisterForm;
+import com.prgrms.movieprj.dto.request.CustomerRegisterForm;
 import com.prgrms.movieprj.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,5 +31,4 @@ public class CustomerServiceImpl implements CustomerService {
     public Optional<Customer> findByName(String name) {
         return customerRepository.findByName(name);
     }
-
 }

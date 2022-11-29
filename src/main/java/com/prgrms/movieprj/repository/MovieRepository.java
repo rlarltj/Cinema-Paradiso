@@ -9,7 +9,8 @@ import java.util.List;
 
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, Integer> {
-    @Query(value = "select m, count(r) as reviewNum from Movie m" +
-            " left join Review r on r.movie = m group by m.id")
+    @Query(value = "select m, count(r) as reviewNum from Review r" +
+            " left join r.movie m" +
+            " group by m.id")
     List<Object[]> findMovieWithReviewCnt();
 }

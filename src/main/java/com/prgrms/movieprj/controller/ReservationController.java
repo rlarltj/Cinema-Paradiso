@@ -1,7 +1,7 @@
 package com.prgrms.movieprj.controller;
 
-import com.prgrms.movieprj.dto.ReservationDto;
-import com.prgrms.movieprj.dto.ReservationForm;
+import com.prgrms.movieprj.dto.request.ReservationForm;
+import com.prgrms.movieprj.dto.response.ReservationDto;
 import com.prgrms.movieprj.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

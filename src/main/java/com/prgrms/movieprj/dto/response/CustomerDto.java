@@ -1,4 +1,4 @@
-package com.prgrms.movieprj.dto;
+package com.prgrms.movieprj.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

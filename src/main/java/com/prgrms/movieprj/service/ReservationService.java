@@ -3,10 +3,10 @@ package com.prgrms.movieprj.service;
 import com.prgrms.movieprj.domain.Customer;
 import com.prgrms.movieprj.domain.Movie;
 import com.prgrms.movieprj.domain.Reservation;
-import com.prgrms.movieprj.dto.CustomerDto;
-import com.prgrms.movieprj.dto.MovieDto;
-import com.prgrms.movieprj.dto.ReservationDto;
-import com.prgrms.movieprj.dto.ReservationForm;
+import com.prgrms.movieprj.dto.request.ReservationForm;
+import com.prgrms.movieprj.dto.response.CustomerDto;
+import com.prgrms.movieprj.dto.response.MovieDto;
+import com.prgrms.movieprj.dto.response.ReservationDto;
 
 import java.util.List;
 
