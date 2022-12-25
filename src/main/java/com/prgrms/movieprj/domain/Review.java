@@ -1,17 +1,17 @@
 package com.prgrms.movieprj.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 @Getter
 public class Review extends BaseEntity {
@@ -21,6 +21,7 @@ public class Review extends BaseEntity {
     private int id;
 
     @Lob
+    @NotBlank(message = "{exception.review.reviewText.null}")
     private String reviewText;
 
     @ManyToOne(fetch = LAZY)
@@ -31,5 +32,7 @@ public class Review extends BaseEntity {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
+    @NotNull(message = "{exception.review.score.null}")
+    @PositiveOrZero(message = "{exception.review.score.positiveOrZero}")
     private int score;
 }

@@ -1,17 +1,20 @@
 package com.prgrms.movieprj.dto.request;
 
 import lombok.Data;
+import lombok.Getter;
+import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 
-@Data
+@Getter
 public class CustomerRegisterForm {
-    @NotBlank(message = "이메일은 필수 입력사항입니다.")
+    @NotBlank(message = "{exception.customer.email.null}")
     private String email;
 
-    @NotBlank(message = "이름은 필수 입력사항입니다.")
+    @NotBlank(message = "{exception.customer.name.null}")
     private String name;
 
-    @NotBlank(message = "핸드폰 번호를 입력해주세요.")
+    @NotBlank(message = "{exception.customer.phoneNumber.null}")
+    @Length(min = 11, max = 15, message = "{exception.customer.phoneNumber.length}")
     private String phoneNumber;
 }

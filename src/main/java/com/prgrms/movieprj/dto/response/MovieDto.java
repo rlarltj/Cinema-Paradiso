@@ -2,11 +2,12 @@ package com.prgrms.movieprj.dto.response;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Data
+@Getter
 @Builder
 public class MovieDto {
     private int id;

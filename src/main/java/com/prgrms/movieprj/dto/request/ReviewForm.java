@@ -1,21 +1,27 @@
 package com.prgrms.movieprj.dto.request;
 
 import lombok.Data;
+import lombok.Getter;
 
+import javax.persistence.Lob;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 
-@Data
+@Getter
 public class ReviewForm {
-    @NotBlank
+
+    @NotBlank(message = "{exception.review.reviewText.null}")
     private String reviewText;
 
-    @NotBlank
+    @NotBlank(message = "{exception.customer.email.null}")
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "{exception.customer.name.null}")
     private String name;
 
-    @NotBlank
+    @NotNull(message = "{exception.review.score.null}")
+    @PositiveOrZero(message = "{exception.review.score.positiveOrZero}")
     private int score;
 
     private int movieId;

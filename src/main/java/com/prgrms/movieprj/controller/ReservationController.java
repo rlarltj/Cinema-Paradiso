@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,7 +24,7 @@ public class ReservationController {
     }
 
     @PostMapping
-    public ResponseEntity<ReservationDto> reserve(@RequestBody ReservationForm form) {
+    public ResponseEntity<ReservationDto> reserve(@Valid @RequestBody ReservationForm form) {
         ReservationDto reservationDto = reservationService.reserve(form);
 
         return new ResponseEntity<>(reservationDto, HttpStatus.OK);
