@@ -1,5 +1,6 @@
 package com.prgrms.movieprj.controller;
 
+import com.prgrms.movieprj.dto.response.ApiResponse;
 import com.prgrms.movieprj.dto.response.MovieDto;
 import com.prgrms.movieprj.dto.response.ReviewDto;
 import com.prgrms.movieprj.service.MovieService;
@@ -16,29 +17,21 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/movie")
+@RequestMapping("/api/v1/movies")
 public class MovieController {
     private final MovieService movieService;
-    private final ReviewService reviewService;
-
-    @GetMapping("/review/{movieId}")
-    public ResponseEntity<List<ReviewDto>> showMovieReviews(@PathVariable int movieId) {
-        List<ReviewDto> reviews = reviewService.findByMovie(movieId);
-
-        return new ResponseEntity<>(reviews, HttpStatus.OK);
-    }
 
     @GetMapping
-    public ResponseEntity<List<MovieDto>> findAll() {
+    public ApiResponse<List<MovieDto>> findAll() {
+        // TODO 커서 기반 페이징 및 일급 컬렉션으로 변경
         List<MovieDto> movieDtoList = movieService.findAll();
-
-        return new ResponseEntity<>(movieDtoList, HttpStatus.OK);
+        return ApiResponse.ok(movieDtoList);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MovieDto> findOne(@PathVariable int id) {
+    public ApiResponse<MovieDto> findOne(@PathVariable Long id) {
         MovieDto movieDto = movieService.findById(id);
 
-        return new ResponseEntity<>(movieDto, HttpStatus.OK);
+        return ApiResponse.ok(movieDto);
     }
 }

@@ -1,6 +1,7 @@
 package com.prgrms.movieprj.controller;
 
 import com.prgrms.movieprj.dto.request.ReservationForm;
+import com.prgrms.movieprj.dto.response.ApiResponse;
 import com.prgrms.movieprj.dto.response.ReservationDto;
 import com.prgrms.movieprj.service.ReservationService;
 import lombok.RequiredArgsConstructor;
@@ -12,28 +13,30 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/reserve")
+@RequestMapping("/api/v1/reserves")
 @RequiredArgsConstructor
 public class ReservationController {
     private final ReservationService reservationService;
 
     @DeleteMapping("/{reserveId}")
-    public ResponseEntity<Void> cancel(@PathVariable int reserveId) {
+    public ApiResponse<Long> cancel(@PathVariable Long reserveId) {
         reservationService.cancel(reserveId);
-        return new ResponseEntity<>(HttpStatus.OK);
+
+        return ApiResponse.ok(reserveId);
     }
 
     @PostMapping
-    public ResponseEntity<ReservationDto> reserve(@Valid @RequestBody ReservationForm form) {
+    public ApiResponse<ReservationDto> reserve(@Valid @RequestBody ReservationForm form) {
         ReservationDto reservationDto = reservationService.reserve(form);
 
-        return new ResponseEntity<>(reservationDto, HttpStatus.OK);
+        return ApiResponse.created(reservationDto);
     }
 
     @GetMapping
-    public ResponseEntity<List<ReservationDto>> showCustomerReservation(@RequestParam String email) {
+    public ApiResponse<List<ReservationDto>> showCustomerReservation(@RequestParam String email) {
         List<ReservationDto> reservationDtoList = reservationService.findByEmail(email);
 
-        return new ResponseEntity<>(reservationDtoList, HttpStatus.OK);
+        //TODO 커서기반 페이징 및 일급 컬렉션으로 변경
+        return ApiResponse.ok(reservationDtoList);
     }
 }
