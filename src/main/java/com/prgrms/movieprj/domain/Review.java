@@ -18,10 +18,11 @@ public class Review extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_id")
-    private int id;
+    private Long id;
 
     @Lob
     @NotBlank(message = "{exception.review.reviewText.null}")
+    @Column(name = "review_text")
     private String reviewText;
 
     @ManyToOne(fetch = LAZY)
@@ -34,5 +35,7 @@ public class Review extends BaseEntity {
 
     @NotNull(message = "{exception.review.score.null}")
     @PositiveOrZero(message = "{exception.review.score.positiveOrZero}")
+    @Column(name = "score")
     private int score;
+
 }

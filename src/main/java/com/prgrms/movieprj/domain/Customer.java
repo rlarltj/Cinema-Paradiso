@@ -17,16 +17,20 @@ public class Customer extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
-    private int id;
+    private Long id;
 
     @NotBlank(message = "{exception.customer.email.null}")
+    @Column(name = "customer_email", unique = true)
     private String email;
 
     @NotBlank(message = "{exception.customer.name.null}")
+    @Column(name = "customer_name", unique = true)
     private String name;
+
 
     @NotBlank(message = "{exception.customer.phoneNumber.null}")
     @Length(min = 11, max = 15, message = "{exception.customer.phoneNumber.length}")
+    @Column(name = "customer_phone")
     private String phoneNumber;
 
     @Builder.Default

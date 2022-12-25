@@ -15,7 +15,7 @@ public class Reservation extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reservation_id")
-    private int id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
@@ -28,10 +28,13 @@ public class Reservation extends BaseEntity {
 
     @NotNull(message = "{exception.reservation.quantity.null}")
     @Positive(message = "{exception.reservation.quantity.positive}")
+    @Column(name = "quantity")
     private int quantity;
 
     @NotNull(message = "{exception.reservation.price.null}")
     @Positive(message = "{exception.reservation.price.positive}")
+    @Column(name = "price")
     private int price;
+
 
 }

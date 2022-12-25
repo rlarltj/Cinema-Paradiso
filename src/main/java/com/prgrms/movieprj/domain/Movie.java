@@ -19,23 +19,28 @@ public class Movie extends BaseEntity {
     @Id
     @Column(name = "movie_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @NotBlank(message = "{exception.movie.name.null}")
+    @Column(name = "name")
     private String name;
 
     @NotBlank(message = "{exception.movie.director.null}")
+    @Column(name = "director")
     private String director;
 
     @NotNull(message = "{exception.movie.price.null}")
     @Positive(message = "{exception.movie.price.positive}")
+    @Column(name = "price")
     private int price;
 
     @NotNull(message = "{exception.movie.running.null}")
     @Positive
+    @Column(name = "running")
     private int running;
 
     @NotNull(message = "{exception.movie.timeTable.null}")
+    @Column(name = "timeTable")
     private LocalDateTime timeTable;
 
     @OneToMany(mappedBy = "movie")
