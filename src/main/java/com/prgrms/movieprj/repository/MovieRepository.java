@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MovieRepository extends JpaRepository<Movie, Integer> {
+public interface MovieRepository extends JpaRepository<Movie, Long> {
     @Query(value = "select m, count(r) as reviewNum from Review r" +
             " left join r.movie m" +
             " group by m.id")

@@ -20,17 +20,17 @@ public class Customer extends BaseEntity {
     private Long id;
 
     @NotBlank(message = "{exception.customer.email.null}")
-    @Column(name = "customer_email", unique = true)
+    @Column(name = "email", unique = true)
     private String email;
 
     @NotBlank(message = "{exception.customer.name.null}")
-    @Column(name = "customer_name", unique = true)
+    @Column(name = "name", unique = true)
     private String name;
 
 
     @NotBlank(message = "{exception.customer.phoneNumber.null}")
     @Length(min = 11, max = 15, message = "{exception.customer.phoneNumber.length}")
-    @Column(name = "customer_phone")
+    @Column(name = "phone_number")
     private String phoneNumber;
 
     @Builder.Default

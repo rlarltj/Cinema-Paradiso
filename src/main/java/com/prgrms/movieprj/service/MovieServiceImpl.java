@@ -3,6 +3,7 @@ package com.prgrms.movieprj.service;
 import com.prgrms.movieprj.domain.Movie;
 import com.prgrms.movieprj.dto.response.MovieDto;
 import com.prgrms.movieprj.repository.MovieRepository;
+import com.prgrms.movieprj.util.EntityConverter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class MovieServiceImpl implements MovieService {
     private final MovieRepository movieRepository;
+    private final EntityConverter converter;
 
     @Override
     public List<MovieDto> findAll() {
@@ -26,8 +28,7 @@ public class MovieServiceImpl implements MovieService {
         List<MovieDto> dtoList = result.stream()
                 .map(obj -> {
                     Movie movie = (Movie) obj[0];
-                    MovieDto movieDto = entityToDto(movie);
-                    movieDto.setReviewNum((Long) obj[1]);
+                    MovieDto movieDto = converter.movieToDto(movie);
                     return movieDto;
                 }).collect(Collectors.toList());
 
@@ -35,12 +36,12 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public MovieDto findById(int id) {
+    public MovieDto findById(Long id) {
 
         Optional<Movie> findOne = movieRepository.findById(id);
 
         Movie movie = findOne.orElseThrow(() -> new RuntimeException());
 
-        return entityToDto(movie);
+        return converter.movieToDto(movie);
     }
 }
