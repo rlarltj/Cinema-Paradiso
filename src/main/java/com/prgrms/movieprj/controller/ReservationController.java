@@ -5,8 +5,6 @@ import com.prgrms.movieprj.dto.response.ApiResponse;
 import com.prgrms.movieprj.dto.response.ReservationDto;
 import com.prgrms.movieprj.service.ReservationService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -18,18 +16,25 @@ import java.util.List;
 public class ReservationController {
     private final ReservationService reservationService;
 
-    @DeleteMapping("/{reserveId}")
-    public ApiResponse<Long> cancel(@PathVariable Long reserveId) {
-        reservationService.cancel(reserveId);
+    @DeleteMapping("/{reservationId}")
+    public ApiResponse<Long> cancel(@PathVariable Long reservationId) {
+        reservationService.cancel(reservationId);
 
-        return ApiResponse.ok(reserveId);
+        return ApiResponse.ok(reservationId);
     }
 
     @PostMapping
-    public ApiResponse<ReservationDto> reserve(@Valid @RequestBody ReservationForm form) {
-        ReservationDto reservationDto = reservationService.reserve(form);
+    public ApiResponse<Long> reserve(@Valid @RequestBody ReservationForm form) {
+        Long reservationId = reservationService.reserve(form);
 
-        return ApiResponse.created(reservationDto);
+        return ApiResponse.created(reservationId);
+    }
+
+    @GetMapping("/{reservationId}")
+    public ApiResponse<ReservationDto> findOne(@PathVariable Long reservationId) {
+        ReservationDto reservationDto = reservationService.findById(reservationId);
+
+        return ApiResponse.ok(reservationDto);
     }
 
     @GetMapping

@@ -33,10 +33,10 @@ public class ReviewController {
     }
 
     @PostMapping
-    public ApiResponse<ReviewDto> register(@RequestBody ReviewForm reviewForm) {
-        ReviewDto review = reviewService.register(reviewForm);
+    public ApiResponse<Long> register(@RequestBody ReviewForm reviewForm) {
+        Long reviewId = reviewService.register(reviewForm);
 
-        return ApiResponse.created(review);
+        return ApiResponse.created(reviewId);
     }
 
     @DeleteMapping("/{id}")
