@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 @Builder
 public class ReservationDto {
-    private int id;
+    private Long id;
     private CustomerDto customer;
     private MovieDto movie;
 

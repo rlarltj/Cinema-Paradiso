@@ -7,7 +7,7 @@ import java.util.List;
 @Getter
 @Builder
 public class CustomerDto {
-    private int id;
+    private Long id;
 
     private String email;
 
@@ -15,5 +15,4 @@ public class CustomerDto {
 
     private String phoneNumber;
 
-    private List<ReservationDto> reservationDtoList;
 }

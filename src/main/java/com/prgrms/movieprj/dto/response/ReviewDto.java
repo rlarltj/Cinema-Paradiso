@@ -7,9 +7,13 @@ import lombok.Getter;
 @Getter
 @Builder
 public class ReviewDto {
-    private int id;
+    private Long id;
+
     private String reviewText;
+
     private CustomerDto customer;
+
     private MovieDto movie;
+
     private int score;
 }

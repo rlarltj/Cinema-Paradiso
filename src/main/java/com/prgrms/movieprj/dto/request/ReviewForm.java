@@ -3,13 +3,14 @@ package com.prgrms.movieprj.dto.request;
 import lombok.Data;
 import lombok.Getter;
 
-import javax.persistence.Lob;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
 @Getter
 public class ReviewForm {
+    @NotNull
+    private Long customerId;
 
     @NotBlank(message = "{exception.review.reviewText.null}")
     private String reviewText;
@@ -24,5 +25,5 @@ public class ReviewForm {
     @PositiveOrZero(message = "{exception.review.score.positiveOrZero}")
     private int score;
 
-    private int movieId;
+    private Long movieId;
 }

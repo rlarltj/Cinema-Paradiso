@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @Builder
 public class MovieDto {
-    private int id;
+    private Long id;
 
     private String name;
 
@@ -22,6 +22,5 @@ public class MovieDto {
 
     private LocalDateTime timeTable;
 
-    private Long reviewNum;
-    private List<ReviewDto> reviews;
+    private int reviewNum;
 }

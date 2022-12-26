@@ -1,6 +1,5 @@
 package com.prgrms.movieprj.dto.request;
 
-import lombok.Data;
 import lombok.Getter;
 import org.hibernate.validator.constraints.Length;
 
